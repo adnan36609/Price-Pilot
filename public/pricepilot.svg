@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <defs>
+    <linearGradient id="pricepilot-mark" x1="6" y1="2" x2="36" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB923C"/>
+      <stop offset="1" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="11" fill="url(#pricepilot-mark)"/>
+  <path d="M9 15.5L16.5 22l6-5.5L31.5 27" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="31.5" cy="27" r="2.4" fill="white"/>
+  <path d="M24.5 10.5L33 14.2l-8.5 3.7 1.6-3.7-1.6-3.7Z" fill="white" fill-opacity="0.95"/>
+</svg>
