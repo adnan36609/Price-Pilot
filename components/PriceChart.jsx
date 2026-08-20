@@ -13,7 +13,7 @@ import {
 import { getPriceHistory } from "@/app/actions";
 import { Loader2 } from "lucide-react";
 
-export default function PriceChart({ productId }) {
+export default function PriceChart({ productId, showTitle = true }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -52,9 +52,11 @@ export default function PriceChart({ productId }) {
 
   return (
     <div className="w-full">
-      <h4 className="text-sm font-semibold mb-4 text-gray-700">
-        Price History
-      </h4>
+      {showTitle && (
+        <h4 className="text-sm font-semibold mb-4 text-gray-700">
+          Price History
+        </h4>
+      )}
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />

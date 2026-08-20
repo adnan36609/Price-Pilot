@@ -6,17 +6,22 @@ import PriceChart from "./PriceChart";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   ExternalLink,
   Trash2,
   TrendingDown,
-  ChevronDown,
-  ChevronUp,
+  ChartLine,
   ImageOff,
 } from "lucide-react";
 import Link from "next/link";
@@ -78,20 +83,11 @@ export default function ProductCard({ product }) {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => setShowChart(!showChart)}
+            onClick={() => setShowChart(true)}
             className="gap-1"
           >
-            {showChart ? (
-              <>
-                <ChevronUp className="w-4 h-4" />
-                Hide Chart
-              </>
-            ) : (
-              <>
-                <ChevronDown className="w-4 h-4" />
-                Show Chart
-              </>
-            )}
+            <ChartLine className="w-4 h-4" />
+            Show Chart
           </Button>
 
           <Button
@@ -120,11 +116,17 @@ export default function ProductCard({ product }) {
         </div>
       </CardContent>
 
-      {showChart && (
-        <CardFooter className="pt-0">
-          <PriceChart productId={product.id} />
-        </CardFooter>
-      )}
+      <Dialog open={showChart} onOpenChange={setShowChart}>
+        <DialogContent className="sm:max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>Price History</DialogTitle>
+            <DialogDescription className="pr-10 line-clamp-2 break-words">
+              {product.name}
+            </DialogDescription>
+          </DialogHeader>
+          <PriceChart productId={product.id} showTitle={false} />
+        </DialogContent>
+      </Dialog>
     </Card>
   );
   
