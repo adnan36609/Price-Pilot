@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Bell, Rabbit, Shield } from "lucide-react";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import AddProductForm from "@/components/AddProductForm";
 import AuthButton from "@/components/ui/AuthButton";
 import { createClient } from "@/lib/server";
@@ -119,9 +120,131 @@ export default async function Home() {
         </section>
       )}
 
-      <footer className="mt-auto py-8 text-center">
-        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-6 py-2 rounded-full text-sm font-medium">
-          Made with ❤️ by Adnan
+      <footer className="mt-auto border-t border-gray-200/60 pt-16 pb-8">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-gray-900 tracking-tight">
+                PricePilot
+              </h3>
+              <p className="text-sm text-gray-500 leading-relaxed max-w-xs">
+                Track real-time prices across your favorite e-commerce stores
+                and get notified the instant deals drop.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-4">
+                Support
+              </h4>
+              <ul className="space-y-2.5 text-sm">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-600 hover:text-orange-500 transition-colors"
+                  >
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-600 hover:text-orange-500 transition-colors"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-600 hover:text-orange-500 transition-colors"
+                  >
+                    Terms & Conditions
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-4">
+                Project
+              </h4>
+              <ul className="space-y-2.5 text-sm">
+                <li>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-orange-500 transition-colors"
+                  >
+                    View Source
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/adnan36609/Price-Pilot"
+                    className="text-gray-600 hover:text-orange-500 transition-colors"
+                  >
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-600 hover:text-orange-500 transition-colors"
+                  >
+                    API Status
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-4">
+                Connect
+              </h4>
+              <div className="flex gap-4 items-center">
+                <a
+                  href="https://github.com/adnan36609"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-orange-500 transition-colors"
+                >
+                  <FaGithub className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/mohd-adnan-124965284/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-orange-500 transition-colors"
+                >
+                  <FaLinkedin className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/adnan36609/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-orange-500 transition-colors"
+                >
+                  <FaInstagram className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-4 pb-2 text-center">
+            <p className="text-sm text-gray-500">
+              © {new Date().getFullYear()} PricePilot • All Rights Reserved.
+            </p>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-200/60 my-6"></div>
+
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-6 py-2 rounded-full text-sm font-medium">
+            Made with ❤️ by Adnan
+          </div>
         </div>
       </footer>
     </main>
