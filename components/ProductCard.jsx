@@ -29,15 +29,19 @@ import { resolveProductImageUrl } from "@/lib/utils";
 
 export default function ProductCard({ product }) {
   const [showChart, setShowChart] = useState(false);
+  const [showRemoveConfirmation, setShowRemoveConfirmation] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
   const imageSrc = resolveProductImageUrl(product.image_url, product.url);
 
   const handleDelete = async () => {
-    if (!confirm("Remove this product from tracking?")) return;
-
     setDeleting(true);
-    await deleteProduct(product.id);
+    try {
+      await deleteProduct(product.id);
+      setShowRemoveConfirmation(false);
+    } finally {
+      setDeleting(false);
+    }
   };
 
   return (
@@ -106,7 +110,7 @@ export default function ProductCard({ product }) {
           <Button
             variant="ghost"
             size="sm"
-            onClick={handleDelete}
+            onClick={() => setShowRemoveConfirmation(true)}
             disabled={deleting}
             className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-1"
           >
@@ -125,6 +129,38 @@ export default function ProductCard({ product }) {
             </DialogDescription>
           </DialogHeader>
           <PriceChart productId={product.id} showTitle={false} />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={showRemoveConfirmation}
+        onOpenChange={(open) => !deleting && setShowRemoveConfirmation(open)}
+      >
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Remove product?</DialogTitle>
+            <DialogDescription>
+              This will stop tracking {product.name}. You can add it again later.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-2">
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => setShowRemoveConfirmation(false)}
+              disabled={deleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              className="w-full"
+              onClick={handleDelete}
+              disabled={deleting}
+            >
+              {deleting ? "Removing..." : "Remove product"}
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </Card>
