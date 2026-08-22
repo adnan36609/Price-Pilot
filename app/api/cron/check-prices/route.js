@@ -14,6 +14,14 @@ export async function POST(request) {
     const authHeader = request.headers.get("authorization");
     const cronSecret = process.env.CRON_SECRET;
 
+    console.log("DEBUG:", {
+      hasCronSecret: !!cronSecret,
+      cronSecretLength: cronSecret?.length,
+      authHeaderLength: authHeader?.length,
+      authHeaderPrefix: authHeader?.slice(0, 15),
+      match: authHeader === `Bearer ${cronSecret}`,
+    });
+
     if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
